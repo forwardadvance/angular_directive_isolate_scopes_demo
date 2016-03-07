@@ -1,0 +1,88 @@
+<html>
+<head>
+  <title>Isolate Scopes</title>
+  <script src="angular.js"></script>
+  <script src="demo.js"></script>
+</head>
+<body ng-app="app" ng-controller="cheeseController">
+  <input ng-model="cheese" />{{cheese}}
+  <hr />
+  <div cheese-directive my-cheese="cheese">
+    This is the transclusion: <input ng-model="cheese" />{{cheese}}
+  </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Initial state -->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>Isolate Scopes</title>
+  <script src="angular.js"></script>
+  <script src="demo.js"></script>
+</head>
+<body ng-app="app" ng-controller="cheeseController">
+  <input ng-model="cheese" />{{cheese}}
+  <hr />
+  <div cheese-directive>
+    This is the transclusion: <input ng-model="cheese" />{{cheese}}
+  </div>
+</body>
+</html> -->
+
+
+
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+  <title>@</title>
+  <script src="angular.js"></script>
+  <script src="demo.js"></script>
+</head>
+<body ng-app="app" ng-controller="myController">
+  <input ng-model="cheese" />{{cheese}}
+  We use @ to initialize a value in the directive scope.
+  <div my-directive cheese="Wensleydale"></div>
+</body>
+</html>
+ -->
+
+
+
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+  <title>=</title>
+  <script src="angular.js"></script>
+  <script src="demo.js"></script>
+</head>
+<body ng-app="app" ng-controller="myController">
+  <input ng-model="test" />{{test}}
+  We use = to bind a value to the directive scope.
+  <div my-directive cheese="test"></div>
+</body>
+</html>
+  -->
+
+
