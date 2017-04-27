@@ -26,16 +26,16 @@ angular.module('app', [])
     return {
       template: `
         <input ng-model='cheese' />{{cheese}}
-        <button ng-click="handleEat()">eat the {{cheese}}</button>
+        <button ng-click="handleChange()">eat the {{cheese}}</button>
       `,
       scope: {
         cheese: '<',
-        onEat: '&'
+        onCheeseChange: '&'
       },
       controller: function($scope) {
-        $scope.handleEat = () => {
-          if ($scope.onEat) {
-            $scope.onEat({cheese:$scope.cheese});
+        $scope.handleChange = () => {
+          if ($scope.onCheeseChange) {
+            $scope.onCheeseChange({cheese:$scope.cheese});
           }
         }
       }

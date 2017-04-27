@@ -44,7 +44,7 @@ angular.module('app', ['flickr']);
     var showError = function() {
       $scope.error = true;
     }
-    var get = function(tag) {
+    $scope.get = function(tag) {
       if (tag) {
         flickrService.getByTag(tag)
           .then(function(data) {
@@ -58,14 +58,15 @@ angular.module('app', ['flickr']);
     $scope.$watch('tag', $scope.get);
   };
 
-  var template = [
-    '<ul>',
-      '<li ng-repeat="item in feed">',
-        '<a href="{{item.link}}">',
-          '<img ng-src="{{item.media.m}}" />',
-        '</a>',
-      '</li>',
-    '</ul>'
-  ].join('');
+  var template = `
+    {{tag}}
+    <ul>,
+      <li ng-repeat="item in feed">,
+        <a href="{{item.link}}">,
+          <img ng-src="{{item.media.m}}" />,
+        </a>,
+      </li>,
+    </ul>
+  `
 
 })();
