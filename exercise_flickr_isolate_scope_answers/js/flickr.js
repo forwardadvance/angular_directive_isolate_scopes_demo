@@ -4,6 +4,9 @@ angular.module('app', ['flickr']);
 
   angular.module('flickr', [])
     .constant('flickrBase', 'http://api.flickr.com/services/feeds/photos_public.gne')
+    .config(function($sceDelegateProvider) {
+      $sceDelegateProvider.resourceUrlWhitelist([ 'self', '**' ]);
+    })
     .directive('flickr', function() {
       var directive = {
         template: template,
@@ -23,10 +26,9 @@ angular.module('app', ['flickr']);
         flickrBase,
         '?tags=',
         tag,
-        '&tagmode=any&format=json',
-        '&jsoncallback=JSON_CALLBACK'
+        '&tagmode=any&format=json'
       ].join('');
-      return $http.jsonp(url)
+      return $http.jsonp(url, {jsonpCallbackParam:'jsoncallback'})
         .then(function(response) {
           return response.data.items;
         });
@@ -50,7 +52,9 @@ angular.module('app', ['flickr']);
           .then(function(data) {
             $scope.feed = data;
           })
-          .catch(showError)
+          .catch((data) => {
+            showError() 
+          })
           .then(hideSpinner);
       }
     }

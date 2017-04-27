@@ -7,7 +7,7 @@
 
   function FlickrService($http) {
     this.getTag = function(tag) {
-      return $http.jsonp(tagUrl(tag))
+      return $http.jsonp(tagUrl(tag, {jsonpCallbackParam:'jsoncallback'}))
     }
   };
 
@@ -18,7 +18,6 @@
       tag,
       '&tagmode=any',
       '&format=json',
-      '&jsoncallback=JSON_CALLBACK'
     ].join('')
   }
 
