@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Isolate Scopes</title>
@@ -6,11 +7,13 @@
 </head>
 <body ng-app="app" ng-controller="cheeseController">
   <input ng-model="cheese" />{{cheese}}
+  Eating: {{eating}}
   <hr />
-  <div cheese-directive my-cheese="cheese">
-    This is the transclusion: <input ng-model="cheese" />{{cheese}}
-  </div>
 
+  
+  <cheese-view cheese="cheese" on-eat="handleEat(cheese)">
+    This is the transclusion: <input ng-model="cheese" />{{cheese}}
+  </cheese-view>
 </body>
 </html>
 
@@ -43,7 +46,7 @@
 <body ng-app="app" ng-controller="cheeseController">
   <input ng-model="cheese" />{{cheese}}
   <hr />
-  <div cheese-directive>
+  <div cheese-view>
     This is the transclusion: <input ng-model="cheese" />{{cheese}}
   </div>
 </body>
@@ -55,14 +58,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>@</title>
+  <title>Isolate Scopes</title>
   <script src="angular.js"></script>
   <script src="demo.js"></script>
 </head>
-<body ng-app="app" ng-controller="myController">
+<body ng-app="app" ng-controller="cheeseController">
   <input ng-model="cheese" />{{cheese}}
-  We use @ to initialize a value in the directive scope.
-  <div my-directive cheese="Wensleydale"></div>
+  <hr />
+  <p>liked: {{likeCount}} Times!!!</p>
+  <cheese-view cheese="cheese" on-like="likeCount = likeCount + 1">
+  </cheese-view>
+
+
+  <input ng-model="search" />
+  <flickrResults tag="search" on-start="loading=true" on-complete="loading=false"></flickrResults>
+
+  <div ng-if="loading">Loading</div>
+
 </body>
 </html>
  -->

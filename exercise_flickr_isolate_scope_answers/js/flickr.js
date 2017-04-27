@@ -1,15 +1,6 @@
 angular.module('app', ['flickr']);
 
 (function() {
-  var template = [
-    '<ul>',
-      '<li ng-repeat="item in feed">',
-        '<a href="{{item.link}}">',
-          '<img ng-src="{{item.media.m}}" />',
-        '</a>',
-      '</li>',
-    '</ul>'
-  ].join('');
 
   angular.module('flickr', [])
     .constant('flickrBase', 'http://api.flickr.com/services/feeds/photos_public.gne')
@@ -53,10 +44,9 @@ angular.module('app', ['flickr']);
     var showError = function() {
       $scope.error = true;
     }
-    showSpinner();
-    $scope.get = function() {
-      if ($scope.tag) {
-        flickrService.getByTag($scope.tag)
+    var get = function(tag) {
+      if (tag) {
+        flickrService.getByTag(tag)
           .then(function(data) {
             $scope.feed = data;
           })
@@ -64,6 +54,18 @@ angular.module('app', ['flickr']);
           .then(hideSpinner);
       }
     }
+    showSpinner();
     $scope.$watch('tag', $scope.get);
   };
+
+  var template = [
+    '<ul>',
+      '<li ng-repeat="item in feed">',
+        '<a href="{{item.link}}">',
+          '<img ng-src="{{item.media.m}}" />',
+        '</a>',
+      '</li>',
+    '</ul>'
+  ].join('');
+
 })();
